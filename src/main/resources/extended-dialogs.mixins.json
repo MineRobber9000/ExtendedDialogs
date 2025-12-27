@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "io.github.minerobber9000.extendeddialogs.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"ServerCommonPacketListenerImplMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

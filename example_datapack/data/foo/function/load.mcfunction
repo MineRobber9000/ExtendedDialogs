@@ -1,0 +1,1 @@
+scoreboard objectives add foo_trigger_objective trigger

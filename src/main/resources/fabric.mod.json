@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "extended-dialogs",
+	"version": "${version}",
+	"name": "Extended Dialogs",
+	"description": "Extends vanilla dialogs with the ability to actually use custom actions",
+	"authors": [
+		"minerobber"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/extended-dialogs/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"io.github.minerobber9000.extendeddialogs.ExtendedDialogs"
+		]
+	},
+	"mixins": [
+		"extended-dialogs.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
