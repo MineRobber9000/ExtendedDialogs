@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.github.minerobber9000.extendeddialogs.ExtendedDialogs;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.nbt.CompoundTag;
@@ -30,6 +33,8 @@ import net.minecraft.world.scores.criteria.ObjectiveCriteria;
 public class StorageTriggerAction implements ExtendedDialogAction {
     protected StorageTriggerAction() {}
 
+    public static Logger LOGGER = LoggerFactory.getLogger("StorageTriggerAction");
+
     public static Identifier DATA_STORAGE = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "storage_trigger");
     public static String TRIGGER = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "trigger").toString();
     public static String PLACEHOLDER = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "placeholder_you_shouldnt_use_this").toString();
@@ -39,7 +44,7 @@ public class StorageTriggerAction implements ExtendedDialogAction {
         // get name of trigger (abort if missing)
         Optional<String> otrigger = tag.getString(TRIGGER);
         if (otrigger.isEmpty()) {
-            ExtendedDialogs.LOGGER.error("storage_trigger action without trigger, ignoring");
+            LOGGER.error("storage_trigger action without trigger, ignoring");
             return;
         }
         String trigger = otrigger.get();
@@ -48,16 +53,16 @@ public class StorageTriggerAction implements ExtendedDialogAction {
         ServerScoreboard ssb = server.getScoreboard();
         Objective triggerObjective = ssb.getObjective(trigger);
         if (triggerObjective==null) {
-            ExtendedDialogs.LOGGER.error("storage_trigger action with nonexistant objective %s, ignoring", trigger);
+            LOGGER.error("storage_trigger action with nonexistant objective %s, ignoring", trigger);
             return;
         }
         if (triggerObjective.getCriteria()!=ObjectiveCriteria.TRIGGER) {
-            ExtendedDialogs.LOGGER.error("storage_trigger action with non-trigger objective %s, ignoring", trigger);
+            LOGGER.error("storage_trigger action with non-trigger objective %s, ignoring", trigger);
             return;
         }
         ReadOnlyScoreInfo rosi = ssb.getPlayerScoreInfo(player, triggerObjective);
         if (rosi==null || rosi.isLocked()) {
-            ExtendedDialogs.LOGGER.error("storage_trigger action with unprimed trigger %s, ignoring", trigger);
+            LOGGER.error("storage_trigger action with unprimed trigger %s, ignoring", trigger);
             return;
         }
         // get player UUID and convert to int array (secret tool that will help us later)
