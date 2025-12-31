@@ -32,17 +32,17 @@ public class StorageTriggerAction implements ExtendedDialogAction {
 
     public static Identifier DATA_STORAGE = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "storage_trigger");
     public static String TRIGGER = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "trigger").toString();
+    public static String PLACEHOLDER = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "placeholder_you_shouldnt_use_this").toString();
 
     @Override
     public void doAction(ServerPlayer player, CompoundTag tag) {
-        // get name of trigger (abort if missing) and remove from arguments
+        // get name of trigger (abort if missing)
         Optional<String> otrigger = tag.getString(TRIGGER);
         if (otrigger.isEmpty()) {
             ExtendedDialogs.LOGGER.error("storage_trigger action without trigger, ignoring");
             return;
         }
         String trigger = otrigger.get();
-        tag.remove(TRIGGER);
         // get trigger objective itself (abort if nonexistant or not trigger or not primed)
         MinecraftServer server = player.level().getServer();
         ServerScoreboard ssb = server.getScoreboard();
@@ -74,7 +74,7 @@ public class StorageTriggerAction implements ExtendedDialogAction {
             Tag bareInputTag = inputs.get(i);
             if (bareInputTag instanceof CompoundTag) {
                 CompoundTag inputTag = (CompoundTag) bareInputTag;
-                if (Arrays.equals(inputTag.getIntArray("UUID").orElse(null), playerUuidIntArray)) {
+                if (Arrays.equals(inputTag.getIntArray("UUID").orElse(null), playerUuidIntArray) && inputTag.getString(TRIGGER).orElse(PLACEHOLDER).equals(trigger)) {
                     inputs.remove(i);
                     break;
                 }
