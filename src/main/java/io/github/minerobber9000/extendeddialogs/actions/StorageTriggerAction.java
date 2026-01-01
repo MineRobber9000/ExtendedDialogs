@@ -53,16 +53,16 @@ public class StorageTriggerAction implements ExtendedDialogAction {
         ServerScoreboard ssb = server.getScoreboard();
         Objective triggerObjective = ssb.getObjective(trigger);
         if (triggerObjective==null) {
-            LOGGER.error("storage_trigger action with nonexistant objective %s, ignoring", trigger);
+            LOGGER.error("storage_trigger action with nonexistant objective {}, ignoring", trigger);
             return;
         }
         if (triggerObjective.getCriteria()!=ObjectiveCriteria.TRIGGER) {
-            LOGGER.error("storage_trigger action with non-trigger objective %s, ignoring", trigger);
+            LOGGER.error("storage_trigger action with non-trigger objective {}, ignoring", trigger);
             return;
         }
         ReadOnlyScoreInfo rosi = ssb.getPlayerScoreInfo(player, triggerObjective);
         if (rosi==null || rosi.isLocked()) {
-            LOGGER.error("storage_trigger action with unprimed trigger %s, ignoring", trigger);
+            LOGGER.error("storage_trigger action with unprimed trigger {}, ignoring", trigger);
             return;
         }
         // get player UUID and convert to int array (secret tool that will help us later)
