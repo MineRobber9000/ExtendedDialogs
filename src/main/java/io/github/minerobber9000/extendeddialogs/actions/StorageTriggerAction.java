@@ -48,7 +48,7 @@ public class StorageTriggerAction implements ExtendedDialogAction {
             return;
         }
         String trigger = otrigger.get();
-        // get trigger objective itself (abort if nonexistant or not trigger or not primed)
+        // get trigger objective itself (abort if nonexistent or not trigger or not primed)
         MinecraftServer server = player.level().getServer();
         ServerScoreboard ssb = server.getScoreboard();
         Objective triggerObjective = ssb.getObjective(trigger);
