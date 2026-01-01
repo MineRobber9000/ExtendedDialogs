@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.mojang.logging.LogUtils;
 
 import io.github.minerobber9000.extendeddialogs.ExtendedDialogs;
 import net.minecraft.core.UUIDUtil;
@@ -33,7 +33,7 @@ import net.minecraft.world.scores.criteria.ObjectiveCriteria;
 public class StorageTriggerAction implements ExtendedDialogAction {
     protected StorageTriggerAction() {}
 
-    public static Logger LOGGER = LoggerFactory.getLogger("StorageTriggerAction");
+    public static Logger LOGGER = LogUtils.getLogger();
 
     public static Identifier DATA_STORAGE = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "storage_trigger");
     public static String TRIGGER = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "trigger").toString();
