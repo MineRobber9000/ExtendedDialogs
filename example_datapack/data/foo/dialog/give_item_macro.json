@@ -1,0 +1,63 @@
+{
+  "type": "minecraft:confirmation",
+  "title": "Give Item Dialog",
+  "body": [
+    {
+      "type": "minecraft:plain_message",
+      "contents": "Select an item and an amount."
+    }
+  ],
+  "inputs": [
+    {
+      "type": "minecraft:single_option",
+      "key": "item",
+      "label": "Item",
+      "options": [
+        {
+          "id": "minecraft:diamond",
+          "display": {
+            "translate": "item.minecraft.diamond"
+          }
+        },
+        {
+          "id": "minecraft:netherite_ingot",
+          "display": {
+            "translate": "item.minecraft.netherite_ingot"
+          }
+        },
+        {
+          "id": "minecraft:potato",
+          "display": {
+            "translate": "item.minecraft.potato"
+          }
+        }
+      ]
+    },
+    {
+      "type": "minecraft:number_range",
+      "key": "amount",
+      "label": "Amount",
+      "start": 1,
+      "end": 64,
+      "step": 1,
+      "initial": 1
+    }
+  ],
+  "yes": {
+    "label": {
+      "translate": "gui.ok"
+    },
+    "action": {
+      "type": "minecraft:dynamic/custom",
+      "id": "extended_dialogs:function_macro",
+      "additions": {
+        "extended_dialogs:function": "foo:give_item"
+      }
+    }
+  },
+  "no": {
+    "label": {
+      "translate": "gui.cancel"
+    }
+  }
+}

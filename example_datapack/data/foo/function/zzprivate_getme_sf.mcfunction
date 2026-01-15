@@ -1,0 +1,1 @@
+$data modify storage extended_dialogs:storage_function me set from storage extended_dialogs:storage_function inputs[{UUID:[I;$(UUID0),$(UUID1),$(UUID2),$(UUID3)],"extended_dialogs:function":"$(function)"}]

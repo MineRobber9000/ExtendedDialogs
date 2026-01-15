@@ -1,8 +1,8 @@
 {
   "type": "minecraft:confirmation",
-  "title": "Score Trigger Test Dialog",
+  "title": "Score Function Test Dialog",
   "body": [
-    {"type":"minecraft:plain_message","contents":"Hitting 'yes' on this dialog should result in the score trigger action being executed."}
+    {"type":"minecraft:plain_message","contents":"Hitting 'yes' on this dialog should result in the score function action being executed."}
   ],
   "inputs": [
     {"type": "minecraft:text", "key":"text_input", "label": "Text input"},
@@ -12,9 +12,9 @@
     "label": {"type":"translatable","translate":"gui.yes"},
     "action": {
       "type": "minecraft:dynamic/custom",
-      "id": "extended_dialogs:storage_trigger",
+      "id": "extended_dialogs:storage_function",
       "additions": {
-        "extended_dialogs:trigger": "foo_trigger_objective"
+        "extended_dialogs:function": "foo:on_sf"
       }
     }
   },

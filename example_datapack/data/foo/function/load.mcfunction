@@ -1,1 +1,2 @@
 scoreboard objectives add foo_trigger_objective trigger
+scoreboard objectives add foo_give_item trigger

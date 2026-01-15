@@ -1,1 +1,1 @@
-$data modify storage extended_dialogs:storage_trigger me set from storage extended_dialogs:storage_trigger inputs[{UUID:[I;$(UUID0),$(UUID1),$(UUID2),$(UUID3)]}]
+$data modify storage extended_dialogs:storage_trigger me set from storage extended_dialogs:storage_trigger inputs[{UUID:[I;$(UUID0),$(UUID1),$(UUID2),$(UUID3)],"extended_dialogs:trigger":$(trigger)}]
