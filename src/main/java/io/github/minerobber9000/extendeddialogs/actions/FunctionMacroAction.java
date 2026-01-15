@@ -23,6 +23,12 @@ import net.minecraft.server.permissions.LevelBasedPermissionSet;
 
 /**
  * Calls a function with the dialog inputs as macro arguments.
+ * 
+ * The function to call is sent alongside the user inputs as the value of the `extended_dialogs:function` key. However,
+ * as a rudimentary security feature, the function that will be called *must* be in the `extended_dialogs:allowed_functions`
+ * function tag, or else it will not be called. This is because hacked clients can theoretically send a custom click event
+ * packet with *any* arguments, so by at least limiting which functions can be called by dialogs, it limits the possible
+ * attack surface.
 */
 public class FunctionMacroAction implements ExtendedDialogAction {
     protected FunctionMacroAction() {}
