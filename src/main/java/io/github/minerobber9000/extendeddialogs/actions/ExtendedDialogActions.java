@@ -12,7 +12,8 @@ public class ExtendedDialogActions {
     public static Map<Identifier, ExtendedDialogAction> actions = Map.of(
         ExtendedDialogs.identifier("test"), new TestAction(),
         ExtendedDialogs.identifier("storage_trigger"), new StorageTriggerAction(),
-        ExtendedDialogs.identifier("function_macro"), new FunctionMacroAction()
+        ExtendedDialogs.identifier("function_macro"), new FunctionMacroAction(),
+        ExtendedDialogs.identifier("storage_function"), new StorageFunctionAction()
     );
 
     public static ExtendedDialogAction resolveAction(Identifier id) {
