@@ -10,9 +10,9 @@ import net.minecraft.resources.Identifier;
 */
 public class ExtendedDialogActions {
     public static Map<Identifier, ExtendedDialogAction> actions = Map.of(
-        Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE,"test"), new TestAction(),
-        Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "storage_trigger"), new StorageTriggerAction(),
-        Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "function_macro"), new FunctionMacroAction()
+        ExtendedDialogs.identifier("test"), new TestAction(),
+        ExtendedDialogs.identifier("storage_trigger"), new StorageTriggerAction(),
+        ExtendedDialogs.identifier("function_macro"), new FunctionMacroAction()
     );
 
     public static ExtendedDialogAction resolveAction(Identifier id) {

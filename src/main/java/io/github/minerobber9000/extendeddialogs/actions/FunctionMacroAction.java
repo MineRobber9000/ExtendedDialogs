@@ -29,19 +29,16 @@ public class FunctionMacroAction implements ExtendedDialogAction {
 
     public static Logger LOGGER = LogUtils.getLogger();
 
-    public static Identifier ALLOWED_FUNCTION_TAG = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "allowed_functions");
-    public static String FUNCTION = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "function").toString();
-
     @Override
     public void doAction(ServerPlayer player, CompoundTag tag) {
         // get name of function and remove it from the arguments (abort if missing)
-        Optional<String> ofunctionstr = tag.getString(FUNCTION);
+        Optional<String> ofunctionstr = tag.getString(ExtendedDialogs.FUNCTION_ARG);
         if (ofunctionstr.isEmpty()) {
             LOGGER.error("function_macro action without function, ignoring");
             return;
         }
         String functionstr = ofunctionstr.get();
-        tag.remove(FUNCTION);
+        tag.remove(ExtendedDialogs.FUNCTION_ARG);
         // get the function itself (abort if nonexistent or not in allowed functions tag)
         Identifier functionid = Identifier.tryParse(functionstr);
         if (functionid==null) {
@@ -56,11 +53,11 @@ public class FunctionMacroAction implements ExtendedDialogAction {
             return;
         }
         CommandFunction<CommandSourceStack> function = ofunction.get();
-        if (!sfm.getTag(ALLOWED_FUNCTION_TAG).stream().anyMatch(fn->{
+        if (!sfm.getTag(ExtendedDialogs.ALLOWED_FUNCTION_TAG).stream().anyMatch(fn->{
             LOGGER.debug("checking {} against function {}: {}",function.id(),fn.id(),Boolean.toString(fn.id().equals(function.id())));
             return fn.id().equals(function.id());
         })) {
-            LOGGER.error("function_macro action with function {} not in {} tag, ignoring", functionstr, ALLOWED_FUNCTION_TAG.toString());
+            LOGGER.error("function_macro action with function {} not in {} tag, ignoring", functionstr, ExtendedDialogs.ALLOWED_FUNCTION_TAG.toString());
             return;
         }
         // run the function with the dialog inputs as macro arguments

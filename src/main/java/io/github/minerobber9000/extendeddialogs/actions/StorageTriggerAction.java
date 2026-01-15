@@ -35,14 +35,12 @@ public class StorageTriggerAction implements ExtendedDialogAction {
 
     public static Logger LOGGER = LogUtils.getLogger();
 
-    public static Identifier DATA_STORAGE = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "storage_trigger");
-    public static String TRIGGER = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "trigger").toString();
-    public static String PLACEHOLDER = Identifier.fromNamespaceAndPath(ExtendedDialogs.RESOURCE_NAMESPACE, "placeholder_you_shouldnt_use_this").toString();
+    public static Identifier DATA_STORAGE = ExtendedDialogs.identifier("storage_trigger");
 
     @Override
     public void doAction(ServerPlayer player, CompoundTag tag) {
         // get name of trigger (abort if missing)
-        Optional<String> otrigger = tag.getString(TRIGGER);
+        Optional<String> otrigger = tag.getString(ExtendedDialogs.TRIGGER_ARG);
         if (otrigger.isEmpty()) {
             LOGGER.error("storage_trigger action without trigger, ignoring");
             return;
@@ -79,7 +77,7 @@ public class StorageTriggerAction implements ExtendedDialogAction {
             Tag bareInputTag = inputs.get(i);
             if (bareInputTag instanceof CompoundTag) {
                 CompoundTag inputTag = (CompoundTag) bareInputTag;
-                if (Arrays.equals(inputTag.getIntArray("UUID").orElse(null), playerUuidIntArray) && inputTag.getString(TRIGGER).orElse(PLACEHOLDER).equals(trigger)) {
+                if (Arrays.equals(inputTag.getIntArray("UUID").orElse(null), playerUuidIntArray) && inputTag.getString(ExtendedDialogs.TRIGGER_ARG).orElse(ExtendedDialogs.PLACEHOLDER).equals(trigger)) {
                     inputs.remove(i);
                     break;
                 }
